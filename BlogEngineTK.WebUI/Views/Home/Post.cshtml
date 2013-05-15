@@ -1,0 +1,26 @@
+﻿@model BlogEngineTK.WebUI.Models.HomePostViewModel
+
+@{
+    Layout = Url.BlogLayout();
+    ViewBag.Title = Model.Post.Header;    
+}
+
+@{ Html.RenderPartial("PostSummary", Model.Post); }
+
+@section paginator {
+    <span id="oldPostLink">
+        @if (Model.PagingInfo.Previous != null)
+        {
+            @Html.RouteLink("Предыдущее", new { action = "Post", postId = Model.PagingInfo.Previous.PostId, routeSegment = Model.PagingInfo.Previous.RouteSegment }) 
+        }      
+    </span>
+    <span id="newPostLink">
+        @if (Model.PagingInfo.Next != null)
+        {
+            @Html.RouteLink("Следующее", new { action = "Post", postId = Model.PagingInfo.Next.PostId, routeSegment = Model.PagingInfo.Next.RouteSegment })
+        }  
+    </span>     
+    <span id="mainPostLink">
+        <a href="@Url.Home()">Главная страница</a>
+    </span>    
+}

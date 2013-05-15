@@ -1,0 +1,53 @@
+﻿@model BlogEngineTK.Domain.Entities.Post
+
+@{
+    // Link to post
+    string link = Url.RouteUrl(new
+    {
+        action = "Post",
+        postId = Model.PostId,
+        routeSegment = Model.RouteSegment
+    });    
+}
+
+<article class="post">
+    <time class="postTime" datetime="@Model.CreatedDate.ToString("yyyy'-'MM'-'dd")">@Model.CreatedDate.ToString("dddd"), @Model.CreatedDate.ToLongDateString()</time>
+    <div class="postFg">
+        <input type="hidden" value="@Model.PostId" />
+        <a href="@link" class="clearLink">
+            <header class="postHeader">@Model.Header</header>
+        </a>
+        <p class="postText">
+            @if (TempData["fullpost"] == null)
+            {
+                @MvcHtmlString.Create(Model.ShortText)
+                
+                <p class="clearP">
+                    <a href="@link">Далее</a>                
+                </p> 
+            }
+            else
+            {
+                @MvcHtmlString.Create(Model.FullText)                
+            }
+            @if (HttpContext.Current.User.Identity.IsAuthenticated)
+            {
+                <p class="clearP">
+                    @Html.RouteLink("Редактировать", new { action = "Update", controller = "Post", postId = Model.PostId, returnUrl = Url.CurrentUrl() })
+                    <br />
+                    @Html.RouteLink("Удалить", new { action = "Delete", controller = "Post", postId = Model.PostId, returnUrl = Url.CurrentUrl() })
+                </p>
+            }            
+        </p>
+        <footer class="postFooter">
+            @if (Model.CommentsNumber > 0)
+            {
+                @:Комментариев: @Model.CommentsNumber <br />
+            }
+            @if (Model.Tags != null)
+            {
+                @:Тэги: @string.Join(", ", Model.Tags.Select(x => x.Name).ToArray())
+	        }
+        </footer>
+    </div>
+</article>

@@ -1,0 +1,53 @@
+﻿@model BlogEngineTK.WebUI.Models.LoginViewModel
+
+@{
+    ViewBag.Title = "Авторизация";
+    var css = @Url.StyleSheetFolder() + "Auth.css";
+    ViewBag.Stylesheets = new MvcHtmlString(string.Format(
+        @"<link href=""{0}"" rel=""stylesheet"" />", css));
+}
+<div class="auth">
+    <h2>Авторизация (только для администратора блога)</h2>
+    <form method="post">
+        @Html.ValidationSummary()
+        <div>
+            @Html.LabelFor(m => m.Login, new { @class = "auth" })
+            <div class="input">
+                @Html.EditorFor(m => m.Login)
+            </div>
+        </div>
+        <div>
+            @Html.LabelFor(m => m.Password, new { @class = "auth" })
+            <div class="input">
+                @Html.EditorFor(m => m.Password)
+            </div>
+        </div>
+        @if (SessionStorage.Current.UnsucLoginAttempts >= 1)
+        {
+            <div>
+                <label for="captcha" class="auth">Введите код с изображения</label>
+                <div class="input">
+                    @Html.EditorFor(m => m.Captcha)
+                </div>
+            </div>
+            <div>
+                <img id="imgCaptcha" src="@Url.Content("~/captcha.axd")" />
+                <a id="refreshCaptcha" href="javascript:void(0)">Обновить</a>
+            </div>
+        }
+        <br />
+        <div>
+            <small>Стандартный логин и пароль: "test" <br /><strong>(пожалуйста, измените логин и пароль при первом же входе, в целях безопасности!) 
+                </strong></small>
+        </div>
+        @Html.RouteLink("Забыли пароль?", new { controller = "Account", action = "PassReminder", returnUrl = Url.CurrentUrl() })
+        <br />
+        <br />
+        <input type="submit" class="auth" value="Войти" />
+    </form>
+</div>
+
+@section scripts
+    {
+    <script src="@Url.CustomScriptsFolder()Auth.js"></script>
+}

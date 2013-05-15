@@ -1,0 +1,131 @@
+﻿#siteHeader {    
+    border: 1px solid white;
+    border-radius: 10px;
+    margin: 20px;
+    padding: 20px;
+}
+
+#blogName, #blogSubheader {    
+    margin: 5px;
+}
+
+#siteFooter {    
+    border: 1px solid white;
+    border-radius: 10px;
+    text-align: center;
+    margin: 20px;
+    padding: 20px;
+    background-image: linear-gradient(bottom, rgb(107,107,107) 32%, rgb(128,125,128) 66%, rgb(143,140,145) 83%);
+    background-image: -o-linear-gradient(bottom, rgb(107,107,107) 32%, rgb(128,125,128) 66%, rgb(143,140,145) 83%);
+    background-image: -moz-linear-gradient(bottom, rgb(107,107,107) 32%, rgb(128,125,128) 66%, rgb(143,140,145) 83%);
+    background-image: -webkit-linear-gradient(bottom, rgb(107,107,107) 32%, rgb(128,125,128) 66%, rgb(143,140,145) 83%);
+    background-image: -ms-linear-gradient(bottom, rgb(107,107,107) 32%, rgb(128,125,128) 66%, rgb(143,140,145) 83%);
+
+    background-image: -webkit-gradient(
+	    linear,
+	    left bottom,
+	    left top,
+	    color-stop(0.32, rgb(107,107,107)),
+	    color-stop(0.66, rgb(128,125,128)),
+	    color-stop(0.83, rgb(143,140,145))
+    );
+    color: white;
+}
+
+#siteTable {
+    display: table;    
+    width: 100%;
+    border-spacing: 20px;    
+}
+
+#siteRow {
+    display: table-row;
+}
+
+#mainCol, #asideCol {
+    display: table-cell;    
+    padding: 10px;
+}
+
+#mainCol {
+    width: 75%;
+    border-radius: 10px;
+    padding: 0px;
+}
+
+.post {    
+    margin-bottom: 30px;    
+}
+
+.postTime {
+    font-weight: bold;
+    text-transform: uppercase;
+    padding-left: 20px;
+    color: #808080;
+}
+
+.postFg {
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid #bdbdbd;
+    padding: 20px;    
+    width: 681px !important;
+}
+
+/* Макс. ширина контента в посте (т.к. tinyMCE может указать больше, чем положено) */
+.postFg table, .postFg p, .postFg div, .postFg pre, 
+.postFg input, .postFg button, .postFg iframe,
+.postFg form {
+    max-width:681px !important;
+}
+
+.postHeader {
+    font-weight: bold;    
+    font-size: 150%;
+}
+
+.postFooter {
+    color: #808080;
+}
+
+#paginator {        
+    text-align: center;    
+}
+
+#paginator a, #paginator a:visited {         
+    font-weight: bold;    
+    font-size: 110%;
+    margin: 2px;    
+    text-decoration: none;    
+}
+
+#paginator a.selected {
+    color: black;
+    background-color: white;    
+    text-decoration: none;    
+}
+
+.clearLink {
+    text-decoration: none;
+}
+
+#oldPostLink, #newPostLink {
+    font-size: 110%;
+}
+#newPostLink {    
+    margin-left: 20px;    
+    float:left;    
+}
+
+#oldPostLink {    
+    margin-right: 20px;
+    float:right;    
+}
+
+#mainPostLink {
+    font-size: 120%;    
+}
+
+.clearP {
+    clear: both;
+}

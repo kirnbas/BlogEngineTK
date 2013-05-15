@@ -1,0 +1,196 @@
+﻿@model BlogEngineTK.WebUI.Areas.Admin.Models.SettingsIndexViewModel
+
+@{
+    Layout = Url.BaseLayout();
+    ViewBag.Title = "Панель управления";
+    var css = Url.StyleSheetFolder() + "AdminLayout.css";
+    ViewBag.Stylesheets = new MvcHtmlString(string.Format(
+        @"<link href=""{0}"" rel=""stylesheet"" />", css));
+
+    AjaxOptions opt = new AjaxOptions
+    {
+        HttpMethod = "Post",
+        OnSuccess = "SuccessNotice",
+        OnFailure = "FailureNotice",
+        LoadingElementId = "loadingBar"
+    };
+}
+
+@using (Ajax.BeginForm(null, null, opt, new { id = "settings" }))
+{
+    <nav id="menu">
+        <ul>
+            <li>
+                <a id="general" href="#general" class="tabLink">Общее</a>
+            </li>
+            <li>
+                <a id="admin" href="#admin" class="tabLink">Администратор</a>
+            </li>
+            <li>
+                <a id="posts" href="#posts" class="tabLink">Посты</a>
+            </li>
+            <li>
+                <a id="poll" href="#poll" class="tabLink">Голосование</a>
+            </li>
+        </ul>
+    </nav>
+
+    <div id="content">
+        <div id="loadingBar">
+        </div>
+        <div id="Notice">            
+        </div>
+        <div id="generalTab" class="tab">
+            <p>
+                @Html.LabelFor(m => m.Settings.BlogName): @Html.TextBoxFor(m => m.Settings.BlogName)
+                <br />
+                @Html.LabelFor(m => m.Settings.BlogSubheader): @Html.TextBoxFor(m => m.Settings.BlogSubheader)
+                <br />
+                @Html.LabelFor(m => m.Settings.FooterText): @Html.TextBoxFor(m => m.Settings.FooterText)
+            </p>
+            <p>
+                @Html.LabelFor(m => m.Settings.Color): @Html.DropDownListFor(m => m.Settings.Color, new SelectList(Enum.GetNames(Model.Settings.Color.GetType())))
+            </p>
+            <fieldset>
+                <legend>Виджеты</legend>
+                <p>
+                    @Html.LabelFor(m => m.Settings.IsAboutAuthorOn): @Html.CheckBoxFor(m => m.Settings.IsAboutAuthorOn, Model.Settings.IsAboutAuthorOn)
+                </p>
+                <p>
+                    @Html.LabelFor(m => m.Settings.IsPopularPostsOn): @Html.CheckBoxFor(m => m.Settings.IsPopularPostsOn, Model.Settings.IsPopularPostsOn)
+                </p>
+                <p>
+                    @Html.LabelFor(m => m.Settings.IsTagsWidgetOn): @Html.CheckBoxFor(m => m.Settings.IsTagsWidgetOn, Model.Settings.IsTagsWidgetOn)
+                </p>
+                <p>
+                    @Html.LabelFor(m => m.Settings.IsPostsArchiveOn): @Html.CheckBoxFor(m => m.Settings.IsPostsArchiveOn, Model.Settings.IsPostsArchiveOn)
+                </p>
+                <p>
+                    @Html.LabelFor(m => m.Settings.IsPollWidgetOn): @Html.CheckBoxFor(m => m.Settings.IsPollWidgetOn, Model.Settings.IsPollWidgetOn)
+                </p>
+            </fieldset>
+            <p>
+                @Html.LabelFor(m => m.Settings.IsBlogOn): @Html.CheckBoxFor(m => m.Settings.IsBlogOn)
+            </p>
+        </div>
+        <div id="adminTab" class="tab">
+
+            <fieldset>
+                <legend>Информация об администраторе</legend>
+
+            </fieldset>
+
+            <fieldset>
+                <legend>Авторизационные данные</legend>
+                <p>
+                    @Html.LabelFor(m => m.Settings.AdminLogin): @Html.TextBoxFor(m => m.Settings.AdminLogin)
+                    @Html.ValidationMessageFor(m => m.Settings.AdminLogin)
+                </p>
+                <p>
+                    @Html.LabelFor(m => m.Settings.Email): @Html.TextBoxFor(m => m.Settings.Email)
+                    @Html.ValidationMessageFor(m => m.Settings.Email)
+                </p>
+                <p>
+                    @Html.LabelFor(m => m.CurrentPassword): @Html.PasswordFor(m => m.CurrentPassword)
+                    @Html.ValidationMessageFor(m => m.CurrentPassword)
+                </p>
+                <p>
+                    @Html.LabelFor(m => m.NewPassword): @Html.PasswordFor(m => m.NewPassword)
+                    @Html.ValidationMessageFor(m => m.NewPassword)
+                </p>
+                <p>
+                    @Html.LabelFor(m => m.ConfirmNewPassword): @Html.PasswordFor(m => m.ConfirmNewPassword)
+                    @Html.ValidationMessageFor(m => m.ConfirmNewPassword)
+                </p>
+            </fieldset>
+        </div>
+        <div id="postsTab" class="tab">
+            <p>
+                @Html.LabelFor(m => m.Settings.MaxPostsAtPage): @Html.EditorFor(m => m.Settings.MaxPostsAtPage)
+                @Html.ValidationMessageFor(m => m.Settings.MaxPostsAtPage)
+            </p>
+        </div>
+    </div>
+
+    <div id="controls">
+        <input id="save" type="submit" value="Сохранить" />
+        <input id="cancel" type="button" value="Отменить внесенные изменения" />
+    </div>
+}
+
+@section scripts
+{
+    <script>
+        //-------------------------Обработка вкладок--------------------------
+
+        $(".tab").hide();
+        $("#Notice").hide();
+
+        // Открытие вкладки по умолчанию или по хэшу ('#')
+        if (window.location.hash)
+        {
+            var selectedTab = window.location.hash;
+            ShowTab(selectedTab);
+        }
+        else
+        {
+            $(".tab:first").fadeIn();
+            $(".tabLink:first").addClass("selected");
+        }
+
+        // Открытие вкладок и выделение кнопки
+
+        $("#general").click(function (e)
+        {
+            ShowTab("#general");
+        });
+
+        $("#admin").click(function (e)
+        {
+            ShowTab("#admin");
+        });
+
+        $("#posts").click(function (e)
+        {
+            ShowTab("#posts");
+            
+        });
+
+        $("#poll").click(function (e)
+        {
+            ShowTab("#poll");
+        });
+
+        function ShowTab(tabId)
+        {
+            $(".tabLink").removeClass("selected");
+            $(".tab").hide();
+            $(tabId + "Tab").fadeIn();
+            $(tabId).addClass("selected");
+            $("#Notice").hide();
+        }
+
+        //--------------------------------------------------------------------
+
+        $("#cancel").click(function (e)
+        {
+            window.location.replace("@Url.Action("Index")");            
+        });
+
+        function SuccessNotice(e)
+        {
+            ShowNotice("Данные успешно сохранены");
+        }
+
+        function FailureNotice(e)
+        {
+            ShowNotice("Произошла ошибка при обработке запроса, пожалуйста попробуйте выполнить запрос позже");
+        }
+
+        function ShowNotice(text)
+        {
+            $("#Notice").text(text);
+            $("#Notice").slideDown("slow");
+        }
+    </script>
+}

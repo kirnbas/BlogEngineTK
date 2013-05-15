@@ -1,0 +1,42 @@
+﻿#content {
+    background-color: white;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+}
+
+#controls {
+    padding: 10px;
+    text-align: right;
+}
+
+#content label {
+    display: inline-block;
+    width: 300px;
+    padding: 2px;
+    text-align: right;
+}
+
+#content textarea {
+    width: 100%;
+}
+
+#ShortText {
+    height: 400px;
+}
+
+#FullText {
+    height: 700px;
+}
+
+#tinymce .mceContentBody p { font-size: large }
+
+#delete {
+    text-align: center;    
+}
+
+#delete input {
+    margin: 8px;
+    margin-right: 20px;
+}
+

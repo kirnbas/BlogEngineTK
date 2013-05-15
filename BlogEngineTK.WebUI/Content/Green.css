@@ -1,0 +1,47 @@
+﻿#paginator a, #paginator a:visited {  
+    color: #42dd1b;  
+}
+
+#paginator a:hover {       
+    color: #42dd1b; 
+    background-color: white;         
+}
+
+a {
+    color: #42dd1b;
+}
+
+a:visited {
+    color: #2e9015;    
+}
+
+a:hover {
+    background-color: #42dd1b;
+    color: white;
+    text-decoration: none;  
+}
+
+.postHeader {
+    color: #42dd1b;
+}
+
+#siteHeader {    
+    background-image: linear-gradient(bottom, rgb(53,156,82) 22%, rgb(80,188,115) 61%, rgb(112,226,150) 81%);
+    background-image: -o-linear-gradient(bottom, rgb(53,156,82) 22%, rgb(80,188,115) 61%, rgb(112,226,150) 81%);
+    background-image: -moz-linear-gradient(bottom, rgb(53,156,82) 22%, rgb(80,188,115) 61%, rgb(112,226,150) 81%);
+    background-image: -webkit-linear-gradient(bottom, rgb(53,156,82) 22%, rgb(80,188,115) 61%, rgb(112,226,150) 81%);
+    background-image: -ms-linear-gradient(bottom, rgb(53,156,82) 22%, rgb(80,188,115) 61%, rgb(112,226,150) 81%);
+
+    background-image: -webkit-gradient(
+	    linear,
+	    left bottom,
+	    left top,
+	    color-stop(0.22, rgb(53,156,82)),
+	    color-stop(0.61, rgb(80,188,115)),
+	    color-stop(0.81, rgb(112,226,150))
+    );
+}
+
+#blogName, #blogSubheader {    
+    color: white;
+}

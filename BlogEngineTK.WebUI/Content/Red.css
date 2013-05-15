@@ -1,0 +1,45 @@
+﻿#paginator a, #paginator a:visited {  
+    color: #6c180b;  
+}
+
+#paginator a:hover {       
+    color: #cb1e1e; 
+    background-color: white;         
+}
+
+a {
+    color: #cb1e1e;
+}
+
+a:visited {
+    color: #6c180b;    
+}
+
+a:hover {
+    background-color: #992211;
+    color: white;
+    text-decoration: none;  
+}
+
+.postHeader {
+    color: #992211;
+}
+
+#siteHeader {    
+    background-image: linear-gradient(bottom, rgb(163,56,44) 37%, rgb(196,76,63) 68%);
+    background-image: -o-linear-gradient(bottom, rgb(163,56,44) 37%, rgb(196,76,63) 68%);
+    background-image: -moz-linear-gradient(bottom, rgb(163,56,44) 37%, rgb(196,76,63) 68%);
+    background-image: -webkit-linear-gradient(bottom, rgb(163,56,44) 37%, rgb(196,76,63) 68%);
+    background-image: -ms-linear-gradient(bottom, rgb(163,56,44) 37%, rgb(196,76,63) 68%);
+    background-image: -webkit-gradient(
+	    linear,
+	    left bottom,
+	    left top,
+	    color-stop(0.37, rgb(163,56,44)),
+	    color-stop(0.68, rgb(196,76,63))
+    );
+}
+
+#blogName, #blogSubheader {    
+    color: white;
+}

@@ -1,0 +1,20 @@
+﻿@model BlogEngineTK.WebUI.Models.HomeIndexViewModel
+
+@{
+    Layout = Url.BlogLayout();    
+}
+
+
+@{
+    foreach (var post in Model.Posts)
+    {
+        Html.RenderPartial("PostSummary", post);
+    }
+}
+
+
+@section paginator
+{
+    @Html.GetPageLinks(Model.PagingInfo,
+        i => Url.Action("Index", new { page = i }))
+}

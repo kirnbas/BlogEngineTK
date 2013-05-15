@@ -1,0 +1,19 @@
+{
+  "AdminLogin": "zero",
+  "Email": "kirnbas@gmail.com",
+  "PasswordHash": "zN47rLP0ObbFt77tWctFrnwNLVC5LYLk9CmZ9+ZIWJw=",
+  "NewPassHash": null,
+  "ConfirmCode": null,
+  "NewPassExpired": "0001-01-01T00:00:00",
+  "Color": 2,
+  "IsAboutAuthorOn": true,
+  "IsPopularPostsOn": false,
+  "IsTagsWidgetOn": true,
+  "IsPostsArchiveOn": false,
+  "IsPollWidgetOn": true,
+  "IsBlogOn": true,
+  "BlogName": "Название блога",
+  "BlogSubheader": "Подзаголовок блога",
+  "FooterText": "Текст в нижней части блога",
+  "MaxPostsAtPage": 2
+}

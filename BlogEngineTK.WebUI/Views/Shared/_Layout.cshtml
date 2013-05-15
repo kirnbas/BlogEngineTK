@@ -1,0 +1,34 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @ViewBag.Stylesheets
+</head>
+<body>
+    <nav id="adminPanel">
+        <a href="@Url.Home()">Главная</a>
+        @if (HttpContext.Current.User.Identity.IsAuthenticated)
+        {
+            @Html.RouteLink("Панель управления", new { area = "Admin", controller = "Settings" });
+            @Html.RouteLink("Создать пост", new { area = "", controller = "Post", action = "Create", returnUrl = Url.CurrentUrl() });
+            @Html.RouteLink("Выйти", new { area = "", controller = "Account", action = "Logout", returnUrl = Url.CurrentUrl() });
+        }
+        else
+        {
+            @Html.RouteLink("Войти", new { controller = "Account", action = "Login", returnUrl = Url.CurrentUrl() });
+        }
+    </nav>
+
+    <div id="foregroundArea">
+        @RenderBody()
+    </div>
+
+    @* Подключаем jquery, в т.ч. и для клиентской валидации *@
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

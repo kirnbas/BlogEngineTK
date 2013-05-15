@@ -1,0 +1,54 @@
+﻿@model BlogEngineTK.WebUI.Models.PassReminderViewModel
+
+@{
+    ViewBag.Title = "Напоминатель пароля";
+    var css = @Url.StyleSheetFolder() + "Auth.css";
+    ViewBag.Stylesheets = new MvcHtmlString(string.Format(
+        @"<link href=""{0}"" rel=""stylesheet"" />", css));
+}
+
+<div class="auth">
+    @if (TempData["msgSended"] == null)
+    {
+        <h2>Напоминатель пароля (только для администратора блога)</h2>
+            
+        <form method="post">
+            @Html.ValidationSummary()
+            <div>
+                @Html.LabelFor(m => m.Email, new { @class = "auth" })
+                <div class="input">
+                    @Html.EditorFor(m => m.Email)
+                </div>
+            </div>
+            @if (SessionStorage.Current.UnsucLoginAttempts >= 1)
+            {
+            <div>
+                <label for="captcha" class="auth">Введите код с изображения</label>
+                <div class="input">
+                    @Html.EditorFor(m => m.Captcha)
+                </div>
+            </div>
+            <div>
+                <img id="imgCaptcha" src="@Url.Content("~/captcha.axd")" />
+                <a id="refreshCaptcha" href="javascript:void(0)">Обновить</a>
+            </div>
+            }
+            <br />
+            <input type="submit" class="auth" value="Подтвердить" />
+        </form>
+    }
+    else
+    {        
+        <p>
+            Сообщение для восстановление доступа было отправлено на указанный email-адрес (@HttpContext.Current.Request.QueryString["email"]), 
+            <a href="@HttpContext.Current.Request.QueryString["returnUrl"]">нажмите, чтобы вернуться на предыдущую страницу</a>.
+        </p>
+    }
+
+</div>
+
+@section scripts
+    {
+
+    <script src="@Url.CustomScriptsFolder()Auth.js"></script>
+}

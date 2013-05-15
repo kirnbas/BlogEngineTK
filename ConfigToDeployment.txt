@@ -1,0 +1,9 @@
+In web.config:
+1. debug = false;
+2. set elFinder phys path and url;
+3. connection string to db.
+
+Set "<MvcBuildViews>true</MvcBuildViews>" in *.csproj file to compile views at building process 
+and output errors in them;
+
+Build all solution by "Release" config.

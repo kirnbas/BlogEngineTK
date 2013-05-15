@@ -1,0 +1,12 @@
+﻿@model string
+
+@{
+    ViewBag.Title = "ConfirmNewPass";
+    var css = @Url.StyleSheetFolder() + "Auth.css";
+    ViewBag.Stylesheets = new MvcHtmlString(string.Format(
+        @"<link href=""{0}"" rel=""stylesheet"" />", css));
+}
+
+<div class="auth">
+    <p>Вы успешно ввели код подтверждения, теперь вы можете @Html.ActionLink("войти", "Login") используя логин и новый пароль (посмотрите полученное письмо).</p>
+</div>

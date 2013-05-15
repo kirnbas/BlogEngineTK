@@ -1,0 +1,52 @@
+﻿/* Custom
+-----------------------------------------------------------*/
+
+body {
+    background-color: #ddd;
+}
+
+#foregroundArea {
+    background-color: #F5F5F5;
+    width: 1024px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    border-radius: 10px;    
+    border: 1px solid white;    
+}
+
+#adminPanel {
+    border-style: outset;
+    border-width: 1px;
+    border-color: #808080;
+    background-color: #EAEAEA;
+    height: 26px;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    text-align: left;
+    padding: 4px 0px 0px 10px;    
+}
+
+#adminPanel a, #adminPanel a:hover, #adminPanel a:visited {
+    color:black;
+    background-color :transparent;
+    text-decoration: none;
+    border: 1px outset #808080;
+    padding: 2px;
+}
+
+#adminPanel a {
+    margin-right: 6px;
+}
+
+#Notice {
+    font-style: italic;
+    color: black;
+    border: 1px dashed #cfcfcf;
+    margin-right: 5px;
+    background-color: #F5F5F5;
+    border-radius: 10px;
+    padding: 10px;
+}

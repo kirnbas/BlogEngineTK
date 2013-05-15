@@ -1,0 +1,23 @@
+- ограничение в 5 минут, при восстановление пароля
+- добавить атрибут (фильтр) для проверки капчи
+- добавить блокировку сессий (капча, 404) через ValidationAttribute или фильтр
+- RemoteValidation
+- MVC AJAX
+- Sessionless and async controllers
+- jquery gallery
+
+Fast, small or importance changes:
+- хостинг картинок постараться сделать свой, картинки переместить на свой сервер + tinymce placeholder or message in editor
+- knockout для concurrency page load
+- переместить классы из Domain в WebUI, которые не должны быть в Domain
+- syntax higlighter
+
+
+- tiny_mce minifaction with Bundles
+- check packages
+
+Probable changes:
+- несколько ролей пользователей;
+- изменение параметров и способа хранения настроек блога (BlogSettings) + изменения в виджетах;
+- модификация параметров поста (Post).
+

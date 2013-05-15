@@ -1,0 +1,41 @@
+﻿
+div.auth {
+    text-align: center;
+    margin: 20px;
+}
+
+div.auth input {
+    width: 120px;
+}
+
+div.auth > form > div {
+    margin: 6px;
+}
+
+div.auth > form > div.validation-summary-errors {
+    text-align: left;
+    width: 360px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+div.auth div.input {
+    text-align: left;
+    display: inline-block;
+    width: 200px;
+}
+
+label.auth {
+    display: inline-block;
+    width: 200px;
+    padding: 2px;
+    text-align: right;
+}
+
+#refreshCaptcha {
+    background-color: transparent;
+    display: inline-block;
+    width: 140px;
+    text-align: left;
+    margin-top: 0px;
+}

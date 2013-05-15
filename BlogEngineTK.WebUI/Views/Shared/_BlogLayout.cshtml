@@ -1,0 +1,68 @@
+﻿@{
+    Layout = Url.BaseLayout();
+    var css = Url.StyleSheetFolder() + "BlogLayout.css";
+    var colorStyle = Url.StyleSheetFolder()
+        + Enum.GetName(typeof(BlogEngineTK.Domain.Entities.ColorScheme), BlogSettings.Current.Color)
+        + ".css";
+    ViewBag.Stylesheets = new MvcHtmlString(string.Format(
+        @"<link href=""{0}"" rel=""stylesheet"" /> <link href=""{1}"" rel=""stylesheet"" />", css, colorStyle));
+    ViewBag.Title = BlogSettings.Current.BlogName + ((ViewBag.Title != null) ? " : " + ViewBag.Title : "");
+}
+
+<header id="siteHeader">
+    <a class="clearLink" href="@Url.Home()">
+        <h1 id="blogName">@BlogSettings.Current.BlogName</h1>
+    </a>
+    <h3 id="blogSubheader">@BlogSettings.Current.BlogSubheader</h3>
+</header>
+
+<div id="siteTable">
+    <div id="siteRow">
+        <section id="mainCol">
+            @RenderBody()
+        </section>
+
+        <aside id="asideCol">
+            <div id="aboutAuthor">
+                @if (BlogSettings.Current.IsAboutAuthorOn)
+                {
+                    @:Об авторе
+	            }
+            </div>
+            <div id="polling">
+                @if (BlogSettings.Current.IsPollWidgetOn)
+                {
+                    @:Голосование
+	            }
+            </div>
+            <div id="popularPosts">
+                @if (BlogSettings.Current.IsPopularPostsOn)
+                {
+                    @:Популярные посты
+	            }
+            </div>
+            <div id="tagsCloud">
+                @if (BlogSettings.Current.IsTagsWidgetOn)
+                {
+                    @:Облако тэгов
+	            }
+            </div>
+            <div id="postsArchive">
+                @if (BlogSettings.Current.IsPostsArchiveOn)
+                {
+                    @:Архив постов
+	            }
+            </div>
+        </aside>
+    </div>
+</div>
+
+<div id="paginator">
+    @RenderSection("paginator", false)
+</div>
+
+<footer id="siteFooter">
+    @BlogSettings.Current.FooterText
+    <br />
+    &copy; Технология BlogEngineTK, YK 2013
+</footer>

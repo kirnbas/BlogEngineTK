@@ -1,0 +1,30 @@
+﻿@model BlogEngineTK.Domain.Entities.Post
+
+@{
+    ViewBag.Title = "Удаление поста";
+    ViewBag.Stylesheets = new MvcHtmlString(string.Format(
+        @"<link href=""{0}"" rel=""stylesheet"" /> />", Url.StyleSheetFolder() + "Post.css"));  
+}
+
+<div id="content">
+    <form action="@Url.Action("DeletePost")" method="post">
+        @Html.HiddenFor(m => m.PostId)
+        @Html.Hidden("returnUrl", (object)ViewBag.ReturnUrl)
+        <p id="delete">
+            Вы действительно хотите удалить пост "@Model.Header"?
+            <br />
+            <input type="submit" value="Да" />
+            <input type="button" id="cancel" value="Нет" />
+        </p>
+    </form>
+</div>
+
+@section scripts
+{
+    <script>
+        $("#cancel").click(function (e)
+        {
+            window.location.replace("@ViewBag.ReturnUrl");
+        });
+    </script>
+}
