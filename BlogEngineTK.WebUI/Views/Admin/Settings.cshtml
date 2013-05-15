@@ -1,4 +1,4 @@
-﻿@model BlogEngineTK.WebUI.Areas.Admin.Models.SettingsIndexViewModel
+﻿@model BlogEngineTK.WebUI.Models.SettingsIndexViewModel
 
 @{
     Layout = Url.BaseLayout();
@@ -174,7 +174,7 @@
 
         $("#cancel").click(function (e)
         {
-            window.location.replace("@Url.Action("Index")");            
+            window.location.replace("@Url.CurrentUrl()");            
         });
 
         function SuccessNotice(e)

@@ -2,10 +2,11 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using BlogEngineTK.Domain.Services.Authorization;
-using BlogEngineTK.WebUI.Areas.Admin.Controllers;
-using BlogEngineTK.WebUI.Areas.Admin.Models;
 using System.Web.Mvc;
 using BlogEngineTK.Tests.Environment;
+using BlogEngineTK.WebUI.Controllers;
+using BlogEngineTK.WebUI.Models;
+using BlogEngineTK.Domain;
 
 namespace BlogEngineTK.Tests.UnitTests
 {
@@ -19,17 +20,17 @@ namespace BlogEngineTK.Tests.UnitTests
             Mock<IAuthProvider> mock = new Mock<IAuthProvider>();
             mock.Setup(m => m.IsValidUser(It.IsAny<string>(), It.Is<char[]>(s => new string(s) == "correct")))
                 .Returns(true);
-            SettingsController target = new SettingsController(mock.Object);
+            AdminController target = new AdminController(mock.Object);
             SettingsIndexViewModel model = new SettingsIndexViewModel
             {
-                Settings = new Domain.BlogSettings(),
+                Settings = BlogSettings.Current,
                 CurrentPassword = "correct",
                 NewPassword = "newcorrect",
                 ConfirmNewPassword = "newcorrect"
             };
 
             // Act
-            ViewResult result = (ViewResult)target.IndexPost(model);
+            ViewResult result = (ViewResult)target.SettingsPost(model);
 
             // Assert
             Assert.IsNotNull(result);
@@ -43,7 +44,7 @@ namespace BlogEngineTK.Tests.UnitTests
             Mock<IAuthProvider> mock = new Mock<IAuthProvider>();
             mock.Setup(m => m.IsValidUser(It.IsAny<string>(), It.Is<char[]>(s => new string(s) == "correct")))
                 .Returns(true);
-            SettingsController target = new SettingsController(mock.Object);
+            AdminController target = new AdminController(mock.Object);
             SettingsIndexViewModel model = new SettingsIndexViewModel
             {
                 CurrentPassword = "uncorrect",
@@ -52,7 +53,7 @@ namespace BlogEngineTK.Tests.UnitTests
             };
 
             // Act
-            ViewResult result = (ViewResult)target.IndexPost(model);
+            ViewResult result = (ViewResult)target.SettingsPost(model);
 
             // Assert
             Assert.IsNotNull(result);
@@ -66,14 +67,14 @@ namespace BlogEngineTK.Tests.UnitTests
             Mock<IAuthProvider> mock = new Mock<IAuthProvider>();
             mock.Setup(m => m.IsValidUser(It.IsAny<string>(), It.Is<char[]>(s => new string(s) == "correct")))
                 .Returns(true);
-            SettingsController target = new SettingsController(mock.Object);
+            AdminController target = new AdminController(mock.Object);
             SettingsIndexViewModel model = new SettingsIndexViewModel
             {
                 CurrentPassword = "correct",
             };
 
             // Act
-            ViewResult result = (ViewResult)target.IndexPost(model);
+            ViewResult result = (ViewResult)target.SettingsPost(model);
 
             // Assert
             Assert.IsNotNull(result);
@@ -87,7 +88,7 @@ namespace BlogEngineTK.Tests.UnitTests
             Mock<IAuthProvider> mock = new Mock<IAuthProvider>();
             mock.Setup(m => m.IsValidUser(It.IsAny<string>(), It.Is<char[]>(s => new string(s) == "correct")))
                 .Returns(true);
-            SettingsController target = new SettingsController(mock.Object);
+            AdminController target = new AdminController(mock.Object);
             SettingsIndexViewModel model = new SettingsIndexViewModel
             {
                 CurrentPassword = "correct",
@@ -100,7 +101,7 @@ namespace BlogEngineTK.Tests.UnitTests
             {
                 target.ModelState.AddModelError("", "");
             }
-            ViewResult result = (ViewResult)target.IndexPost(model);
+            ViewResult result = (ViewResult)target.SettingsPost(model);
 
             // Assert
             Assert.IsNotNull(result);

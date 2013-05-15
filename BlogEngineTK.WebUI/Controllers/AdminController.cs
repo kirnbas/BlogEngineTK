@@ -1,21 +1,21 @@
 ﻿using BlogEngineTK.Domain;
 using BlogEngineTK.Domain.Services;
 using BlogEngineTK.Domain.Services.Authorization;
-using BlogEngineTK.WebUI.Areas.Admin.Models;
+using BlogEngineTK.WebUI.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace BlogEngineTK.WebUI.Areas.Admin.Controllers
+namespace BlogEngineTK.WebUI.Controllers
 {
     [Authorize]
-    public class SettingsController : Controller
+    public class AdminController : Controller
     {
         private IAuthProvider authProvider;
 
-        public SettingsController(IAuthProvider authProvider)
+        public AdminController(IAuthProvider authProvider)
         {
             this.authProvider = authProvider;
         }
@@ -24,14 +24,14 @@ namespace BlogEngineTK.WebUI.Areas.Admin.Controllers
         /// Выводит панель управления администратора
         /// </summary>
         [HttpGet]        
-        public ActionResult Index()
+        public ActionResult Settings(string returnUrl)
         {
             // Получаем текущие настройки для установки контролов в панели управления
             BlogSettings settings = BlogSettings.ShallowCopy;
             SettingsIndexViewModel model = new SettingsIndexViewModel
             {
                 Settings = settings
-            };
+            };            
 
             return View(model);
         }
@@ -41,8 +41,8 @@ namespace BlogEngineTK.WebUI.Areas.Admin.Controllers
         /// </summary>
         /// <param name="model">Настройки с панели управления</param>
         [HttpPost]
-        [ActionName("Index")]
-        public ActionResult IndexPost(SettingsIndexViewModel model)
+        [ActionName("Settings")]
+        public ActionResult SettingsPost(SettingsIndexViewModel model)
         {
             if (ModelState.IsValid)
             {

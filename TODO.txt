@@ -7,9 +7,9 @@
 - jquery gallery
 
 Fast, small or importance changes:
+- blogOff должен отображать View for admin
 - хостинг картинок постараться сделать свой, картинки переместить на свой сервер + tinymce placeholder or message in editor
 - knockout для concurrency page load
-- переместить классы из Domain в WebUI, которые не должны быть в Domain
 - syntax higlighter
 
 

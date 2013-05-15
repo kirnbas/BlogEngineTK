@@ -23,7 +23,7 @@ namespace BlogEngineTK.Domain
     {
         private const string FILENAME = "BlogSettings.json";
 
-        #region Serialized properties (value types & main settings)        
+        #region Serializable properties (value types & main settings)        
 
         #region Опции во вкладке "Администратор"
 
@@ -163,7 +163,7 @@ namespace BlogEngineTK.Domain
         private static readonly BlogSettings current = new BlogSettings();
 
         /// <summary>
-        /// Return instance which used to read and change blog settings
+        /// Return main instance which used to read and change blog settings
         /// </summary>
         public static BlogSettings Current 
         {
@@ -172,6 +172,7 @@ namespace BlogEngineTK.Domain
 
         /// <summary>
         /// Return instance which is shallow copy of Current instance
+        /// and contains only serializable instance fields (Value-type)
         /// </summary>
         public static BlogSettings ShallowCopy
         {

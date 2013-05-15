@@ -12,9 +12,9 @@
         <a href="@Url.Home()">Главная</a>
         @if (HttpContext.Current.User.Identity.IsAuthenticated)
         {
-            @Html.RouteLink("Панель управления", new { area = "Admin", controller = "Settings" });
-            @Html.RouteLink("Создать пост", new { area = "", controller = "Post", action = "Create", returnUrl = Url.CurrentUrl() });
-            @Html.RouteLink("Выйти", new { area = "", controller = "Account", action = "Logout", returnUrl = Url.CurrentUrl() });
+            @Html.RouteLink("Панель управления", new { controller = "Admin", action = "Settings", returnUrl = Url.CurrentUrl() });
+            @Html.RouteLink("Создать пост", new { controller = "Post", action = "Create", returnUrl = Url.CurrentUrl() });
+            @Html.RouteLink("Выйти", new { controller = "Account", action = "Logout", returnUrl = Url.CurrentUrl() });             
         }
         else
         {

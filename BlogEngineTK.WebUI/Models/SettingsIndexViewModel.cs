@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace BlogEngineTK.WebUI.Areas.Admin.Models
+namespace BlogEngineTK.WebUI.Models
 {
     public class SettingsIndexViewModel
     {

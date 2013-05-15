@@ -28,7 +28,7 @@ namespace BlogEngineTK.WebUI.Controllers
         /// </summary>
         [RedirectAuthAttribute]
         public ActionResult Login()
-        {
+        {            
             return View();
         }
 
@@ -51,7 +51,7 @@ namespace BlogEngineTK.WebUI.Controllers
                 {
                     storage.UnsucLoginAttempts = 0;
                     storage.CaptchaCode = null;
-                    return Redirect(returnUrl + "?sign=true" ?? Url.Action("Index", "Home", new { sign = "true" }));
+                    return Redirect((returnUrl ?? Url.Action("Index", "Home")) + "?sign=true");
                 }
                 else
                 {
@@ -76,7 +76,7 @@ namespace BlogEngineTK.WebUI.Controllers
         public ActionResult Logout(string returnUrl)
         {
             authProvider.Logout();
-            return Redirect(returnUrl + "?signOut=true" ?? Url.Action("Index", "Home", new { signOut = "true" }));
+            return Redirect((returnUrl ?? Url.Action("Index", "Home")) + "?signOut=true");
         }
 
         /// <summary>
@@ -168,6 +168,7 @@ namespace BlogEngineTK.WebUI.Controllers
         /// </summary>
         /// <param name="code">Код потверждения</param>
         /// <returns>Возвращает ViewResult если входные данные корректны; в противном случае возвращает HttpNotFound</returns>
+        [RedirectAuthAttribute]
         public ActionResult ConfirmNewPass(string code, SessionStorage storage)
         {
             if (storage.UnsucNumOfConfirmCode >= 3) // Простая мера защиты от брута кода потверждения (действует только в рамках сессии)

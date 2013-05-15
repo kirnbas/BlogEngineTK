@@ -34,9 +34,10 @@ namespace BlogEngineTK.Tests.UnitTests
             string storedPasswordHash = Convert.ToBase64String(HashPassword.HashPass(userData.Password.ToCharArray(), new byte[0]));
             IAuthProvider authProv = new FormsAuthProvider(userData.Login, storedPasswordHash, "");
             AccountController target = new AccountController(authProv);
+            SessionStorage storage = SessionStorage.Current;
 
             // Act
-            ActionResult result = target.Login(userData, "#true", SessionStorage.Current);
+            ActionResult result = target.Login(userData, "#true", storage);
 
             // Assert
             Assert.IsInstanceOfType(result, typeof(RedirectResult));
@@ -78,8 +79,7 @@ namespace BlogEngineTK.Tests.UnitTests
             string storedPasswordHash = Convert.ToBase64String(HashPassword.HashPass(userData.Password.ToCharArray(), new byte[0]));
             IAuthProvider authProv = new FormsAuthProvider(userData.Login, storedPasswordHash, "");
             AccountController target = new AccountController(authProv);
-            SessionStorage storage = SessionStorage.Current;
-            
+            SessionStorage storage = SessionStorage.Current;      
             storage.CaptchaCode = captcha;
 
             // Act
@@ -132,7 +132,7 @@ namespace BlogEngineTK.Tests.UnitTests
             AccountController target = new AccountController(authProv);
             SessionStorage storage = SessionStorage.Current;
             string captcha = "54asd#213_54WQExz";
-            storage.CaptchaCode = captcha;
+            storage.CaptchaCode = captcha; 
 
             // Act
             ActionResult result = target.Login(userData, "#true", storage);
@@ -183,7 +183,7 @@ namespace BlogEngineTK.Tests.UnitTests
             IAuthProvider authProv = new FormsAuthProvider(userData.Login, storedPasswordHash, "");
             AccountController target = new AccountController(authProv);
             SessionStorage storage = SessionStorage.Current;            
-            storage.CaptchaCode = captcha;
+            storage.CaptchaCode = captcha; 
 
             // Act
             ActionResult result = target.Login(userData, "#true", storage);
@@ -206,13 +206,15 @@ namespace BlogEngineTK.Tests.UnitTests
             string storedPasswordHash = Convert.ToBase64String(HashPassword.HashPass(userData.Password.ToCharArray(), new byte[0]));
             IAuthProvider authProv = new FormsAuthProvider(userData.Login, storedPasswordHash, "");
             AccountController target = new AccountController(authProv);
+            SessionStorage storage = SessionStorage.Current;
 
             // Act
             ActionResult result = target.Logout("#true");
 
             // Assert
             Assert.IsInstanceOfType(result, typeof(RedirectResult));
-            Assert.IsTrue(((RedirectResult)result).Url.Contains("#true"));
+
+            Assert.IsTrue(((RedirectResult)result).Url.Contains("#true"));   
         }
 
         [TestMethod]
