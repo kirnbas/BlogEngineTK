@@ -20,12 +20,3 @@ and output errors in them;
 Build all solution by "Release" config.
 
 -------------------------------------------------------------------------------
-
-His name is Yerzhan Kalzhani. He's a pragmatic software developer who loves tasks that are 
-interesting and challenging. His motto in software developing: "Quality, Performance and Agile".
-
-He prefers systematic approach when solving a problem, so he thinks that every good developer, 
-first of all, should be able to manage the complexity of a software system and produce the 
-well-structured solution for a poorly defined problem.
-
-Licensed under MIT License.
